@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Tree
+  - Stone
   layers:
   - Default
   - TransparentFX

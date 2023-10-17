@@ -55,7 +55,21 @@ public class Player : MonoBehaviour, IController
         }
         
     }
-    
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            Wall wall = other.GetComponent<Wall>();
+            moving = false;
+        }
+        if (other.CompareTag("Tree"))
+        {
+            myTree tree = other.GetComponent<myTree>();
+            tree.Collide();
+            moving = false;
+        }
+    }
+
+
 
 }

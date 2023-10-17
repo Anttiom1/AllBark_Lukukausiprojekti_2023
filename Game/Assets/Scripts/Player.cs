@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IController
 {
-    protected Rigidbody rBody;           // Reference to the player's Rigidbody component.
-    protected Vector3 movementVector;    // Vector for player movement.
+    [SerializeField]
+    private Slider chargeMeter;
 
+    protected Rigidbody rBody;           // Reference to the player's Rigidbody component.
+    protected Vector3 movementVector;    // Vector for player movement
     protected float movementSpeed;       // Speed of player movement.
     protected float rotateSpeed;         // Speed of player rotation.
-
-    protected bool moving = false;       // Flag to indicate whether the player is moving.
+    protected float charge; 
+    
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +26,10 @@ public class Player : MonoBehaviour, IController
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        // Add a force to the Rigidbody based on the movement vector.
-        rBody.AddForce(movementVector);
+        if (chargeMeter != null)
+        {
+            chargeMeter.value = charge;
+        }
     }
 
     // Initialize the player's components.
@@ -55,11 +55,15 @@ public class Player : MonoBehaviour, IController
     }
 
     // Handle charging movement based on charge input.
-    public virtual void ChargeMove(float charge)
+    public virtual void ChargeMove(float charge, bool chargeDone)
     {
         // Apply velocity to the Rigidbody to move the player forward.
-        GetComponent<Rigidbody>().velocity = transform.forward * charge * Time.deltaTime;
-
+        if (chargeDone)
+        {
+            GetComponent<Rigidbody>().velocity = transform.forward * charge;
+            charge = 0;
+        }
+        this.charge = charge;
         Debug.Log(charge);  // Log the charge value.
     }
 
@@ -69,13 +73,11 @@ public class Player : MonoBehaviour, IController
         if (other.CompareTag("Wall"))
         {
             Wall wall = other.GetComponent<Wall>();
-            moving = false;
         }
         if (other.CompareTag("Tree"))
         {
             myTree tree = other.GetComponent<myTree>();
             tree.Collide();
-            moving = false;
         }
     }
 }

@@ -4,31 +4,53 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 
+// Define an interface for the controller.
 public interface IController
 {
-    public void Axis(float horizontalValue, float verticalValue);
-    
+    // Method to handle axis input.
+    public void Axis(float horizontalValue);
+    // Method to handle charge movement.
+    public void ChargeMove(float charge);
 }
 
+// Create a Controller class that interacts with the IController interface.
 public class Controller
 {
+    float charge = 0; // Initialize a charge variable to keep track of charging.
     private IController listener;
 
+    // Constructor for the Controller class, accepting an instance of IController.
     public Controller(IController listener)
     {
         this.listener = listener;
 
+        // Subscribe to an Update event to read controller values continuously.
         UpdateCaller.OnUpdate += ReadControllerValue;
     }
 
+    // Method to read controller input and update the IController instance.
     public void ReadControllerValue()
     {
+        // Read the horizontal input axis.
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
 
-        listener.Axis(horizontal, vertical);
+        // Call the Axis method on the IController instance, passing the horizontal value.
+        listener.Axis(horizontal);
+
+        // Check if the "Jump" button is pressed.
+        if (Input.GetButton("Jump"))
+        {
+            // Increase the charge value by 10.
+            charge = charge + 10;
+        }
+
+        // Check if the "Jump" button is released.
+        if (Input.GetButtonUp("Jump"))
+        {
+            // Call the ChargeMove method on the IController instance, passing the charge value.
+            listener.ChargeMove(charge);
+            // Reset the charge value to 0 after using it.
+            charge = 0;
+        }
     }
-    
-    
 }
-

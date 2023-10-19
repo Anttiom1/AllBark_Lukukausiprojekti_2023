@@ -4,13 +4,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI chargeText;
     
-
+    [SerializeField]
+    private TextMeshProUGUI timerText;
+    
     private float timer;
 
     float charge = 0;
@@ -23,9 +24,10 @@ public class GameUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        //F1 defines how many decimal will be shown
+        string formatedTime = timer.ToString("F1");
+        timerText.text = formatedTime;
         
-        
-
-       
     }
 }

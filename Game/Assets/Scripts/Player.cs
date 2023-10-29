@@ -70,14 +70,12 @@ public class Player : MonoBehaviour, IController
     // Handle collisions with other objects.
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Wall"))
+        //Gets the objectManager interface from the collided object
+        IObjectManager objectManager = other.GetComponent<IObjectManager>();
+        //If objectManager interface is found executes the Collide method
+        if (objectManager != null)
         {
-            Wall wall = other.GetComponent<Wall>();
+            objectManager.Collide();
         }
-        if (other.CompareTag("Tree"))
-        {
-            myTree tree = other.GetComponent<myTree>();
-            tree.Collide();
-        }
-    }
+    }   
 }

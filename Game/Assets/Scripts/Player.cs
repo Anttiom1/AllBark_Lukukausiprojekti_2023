@@ -12,7 +12,9 @@ public class Player : MonoBehaviour, IController
     protected Vector3 movementVector;    // Vector for player movement
     protected float movementSpeed;       // Speed of player movement.
     protected float rotateSpeed;         // Speed of player rotation.
-    protected float charge; 
+    protected float charge;
+
+    Animation PlayerAnimation;
     
 
     // Start is called before the first frame update
@@ -21,6 +23,8 @@ public class Player : MonoBehaviour, IController
         Init();                         // Initialize the player.
         movementSpeed = 10;             // Set the movement speed.
         rotateSpeed = 75;               // Set the rotation speed.
+        PlayerAnimation = GetComponent<Animation>();
+        
     }
 
     // Update is called once per frame
@@ -61,6 +65,8 @@ public class Player : MonoBehaviour, IController
         if (chargeDone)
         {
             GetComponent<Rigidbody>().velocity = transform.forward * charge;
+            PlayerAnimation.Play("RunAnimation");
+            //UI chargemeter
             charge = 0;
         }
         this.charge = charge;
@@ -76,6 +82,10 @@ public class Player : MonoBehaviour, IController
         if (objectManager != null)
         {
             objectManager.Collide();
+            PlayerAnimation.Play("IdleAnimation");
+            GetComponent<Rigidbody>().velocity = transform.transform.forward * 0;
         }
-    }   
+    }  
+    
+
 }

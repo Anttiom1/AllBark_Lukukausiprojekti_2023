@@ -18,13 +18,13 @@ public class GameUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 0;
+        timer = 60;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        timer -= Time.deltaTime;
         //F1 defines how many decimal will be shown
         string formatedTime = timer.ToString("F1");
         timerText.text = formatedTime;

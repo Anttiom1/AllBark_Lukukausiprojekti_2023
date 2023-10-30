@@ -5,22 +5,16 @@ using UnityEngine;
 public class myTree : MonoBehaviour, IObjectManager
 {
     public GameObject Stump;
+
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.tag = "Tree";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
-
     public void Collide()
     {
         Destroy(gameObject);
-        Vector3 position = new Vector3 (transform.position.x, 0, transform.position.z);
+        Vector3 position = new Vector3 (transform.position.x, transform.position.y-1.5f, transform.position.z);
         Instantiate(Stump, position , Quaternion.identity);
         
     }

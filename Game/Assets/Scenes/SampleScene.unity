@@ -1470,9 +1470,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309c8b73411a69b45922cb86f5a5e557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myObjects:
-  - {fileID: 4691939364593108659, guid: e0a8640f298f497468d5db6474a506e2, type: 3}
-  - {fileID: 7775526777549410471, guid: ddb45f9eeca873d42a3b5768db69599c, type: 3}
+  TreePrefabs:
+  - {fileID: 4661435515762455780, guid: e289bf5debb17f6459818c207d781953, type: 3}
+  - {fileID: 9069115365609291303, guid: 60f79905accf3b24fa0114b941f1aac0, type: 3}
+  StonePrefabs:
+  - {fileID: 7405846476849542632, guid: c6308cb7062fac34e8e50600086b12a1, type: 3}
+  - {fileID: 5202732821079448320, guid: cebfacc247a640945a2c30b442202fca, type: 3}
+  - {fileID: 4680757731160225450, guid: 0fde05fa0f3321942a21896ff4f0856f, type: 3}
+  - {fileID: 8783306491908617939, guid: f02116c209ecd9e488fc4d2cd8996133, type: 3}
+  - {fileID: 1576488453971893466, guid: a778b631c6253a04899cb31bad047c81, type: 3}
 --- !u!154 &1520161548
 TerrainCollider:
   m_ObjectHideFlags: 0

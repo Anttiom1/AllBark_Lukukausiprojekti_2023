@@ -14,7 +14,7 @@ public class myTree : MonoBehaviour, IObjectManager
     public void Collide()
     {
         Destroy(gameObject);
-        Vector3 position = new Vector3 (transform.position.x, transform.position.y-1.5f, transform.position.z);
+        Vector3 position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
         Instantiate(Stump, position , Quaternion.identity);
         
     }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class TerrainGenerator : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] myObjects;
+    GameObject[] TreePrefabs;
+    [SerializeField]
+    GameObject[] StonePrefabs;
     private int width = 256;
     private int height = 256;
     private int depth = 5;
@@ -27,12 +29,9 @@ public class TerrainGenerator : MonoBehaviour
         // ObjectSpawner
         {
             // Spawning trees
-            int amountOfTrees = 0;
-            while (amountOfTrees < 100)
+            for (int i = 0; i < 1000; i++)
             {
-                // Select a random object from the myObjects array
-                int randomIndex = Random.Range(0, myObjects.Length);
-
+                int treeModel = Random.Range(0, TreePrefabs.Length);
                 // Generate random X and Z coordinates within a range
                 float x = Random.Range(-128, 128);
                 float z = Random.Range(-128, 128);
@@ -41,21 +40,18 @@ public class TerrainGenerator : MonoBehaviour
                 float y = terrain.SampleHeight(new Vector3(x, 0, z));
 
                 // Create a random spawn point with a slight height offset
-                Vector3 randomSpawnPoint = new Vector3(x, y + 2, z);
+                Vector3 randomSpawnPoint = new Vector3(x, y, z);
 
                 // Instantiate the selected object at the random spawn point
-                Instantiate(myObjects[0], randomSpawnPoint, Quaternion.identity);
+                Instantiate(TreePrefabs[treeModel], randomSpawnPoint, Quaternion.identity);
 
-                amountOfTrees++;
+                i++;
             }
 
             // Spawning stones
-            int amountOfStones = 0;
-            while (amountOfStones < 50)
+            for (int i = 0; i < 250; ++i)
             {
-                // Select a random object from the myObjects array
-                int randomIndex = Random.Range(0, myObjects.Length);
-
+                int stoneModel = Random.Range(0, StonePrefabs.Length);
                 // Generate random X and Z coordinates within a range
                 float x = Random.Range(-128, 128);
                 float z = Random.Range(-128, 128);
@@ -67,9 +63,9 @@ public class TerrainGenerator : MonoBehaviour
                 Vector3 randomSpawnPoint = new Vector3(x, y, z);
 
                 // Instantiate the selected object at the random spawn point
-                Instantiate(myObjects[1], randomSpawnPoint, Quaternion.identity);
+                Instantiate(StonePrefabs[stoneModel], randomSpawnPoint, Quaternion.identity);
 
-                amountOfStones++;
+                i++;
             }
         }
     }

@@ -70,7 +70,6 @@ public class Player : MonoBehaviour, IController
             charge = 0;
         }
         this.charge = charge;
-        Debug.Log(charge);  // Log the charge value.
     }
 
     // Handle collisions with other objects.
@@ -83,7 +82,11 @@ public class Player : MonoBehaviour, IController
         {
             objectManager.Collide();
             PlayerAnimation.Play("IdleAnimation");
-            GetComponent<Rigidbody>().velocity = transform.transform.forward * 0;
+            rBody.velocity = transform.forward * 0;
+        }
+        if (objectManager == null)
+        {
+            Debug.Log("Ei IObjectManageria");
         }
     }  
     

@@ -16,6 +16,7 @@ public class myTree : MonoBehaviour, IObjectManager
         Destroy(gameObject);
         Vector3 position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
         Instantiate(Stump, position , Quaternion.identity);
-        
+        GameManager.instance.AddScore(1); // Yksi piste per puu, vaihtaa myöhemmin
+        Destroy(gameObject);
     }
 }

@@ -29,7 +29,7 @@ public class TerrainGenerator : MonoBehaviour
         // ObjectSpawner
         {
             // Spawning trees
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 5000; i++)
             {
                 int treeModel = Random.Range(0, TreePrefabs.Length);
                 // Generate random X and Z coordinates within a range

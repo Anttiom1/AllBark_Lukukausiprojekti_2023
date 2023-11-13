@@ -11,9 +11,8 @@ public class myTree : MonoBehaviour, IObjectManager
     {
         
     }
-    public void Collide()
+    public virtual void Collide()
     {
-        Destroy(gameObject);
         Vector3 position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
         Instantiate(Stump, position , Quaternion.identity);
         GameManager.instance.AddScore(1); // Yksi piste per puu, vaihtaa myöhemmin

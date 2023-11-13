@@ -1607,15 +1607,21 @@ MonoBehaviour:
   TreePrefabs:
   - {fileID: 4661435515762455780, guid: e289bf5debb17f6459818c207d781953, type: 3}
   - {fileID: 9069115365609291303, guid: 60f79905accf3b24fa0114b941f1aac0, type: 3}
-  - {fileID: 4661435515762455780, guid: a40d91d0e437e764c9636d8fdacc143a, type: 3}
+  FellTreePrefabs:
   - {fileID: 9069115365609291303, guid: 816162a2d3588a743a9b72e5472dae8e, type: 3}
   - {fileID: 4661435515762455780, guid: 055ece87faf1b674cae7d41d03cd7738, type: 3}
+  SaplingPrefabs:
+  - {fileID: 4661435515762455780, guid: a40d91d0e437e764c9636d8fdacc143a, type: 3}
   StonePrefabs:
   - {fileID: 7405846476849542632, guid: c6308cb7062fac34e8e50600086b12a1, type: 3}
   - {fileID: 5202732821079448320, guid: cebfacc247a640945a2c30b442202fca, type: 3}
   - {fileID: 4680757731160225450, guid: 0fde05fa0f3321942a21896ff4f0856f, type: 3}
   - {fileID: 8783306491908617939, guid: f02116c209ecd9e488fc4d2cd8996133, type: 3}
   - {fileID: 1576488453971893466, guid: a778b631c6253a04899cb31bad047c81, type: 3}
+  amountOfTrees: 1
+  amountOfFellTrees: 1
+  amountOfSaplings: 1
+  amountOfStones: 1
 --- !u!154 &1520161548
 TerrainCollider:
   m_ObjectHideFlags: 0

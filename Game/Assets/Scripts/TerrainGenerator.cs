@@ -7,7 +7,20 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField]
     GameObject[] TreePrefabs;
     [SerializeField]
+    GameObject[] FellTreePrefabs;
+    [SerializeField]
+    GameObject[] SaplingPrefabs;
+    [SerializeField]
     GameObject[] StonePrefabs;
+    [SerializeField]
+    float amountOfTrees;
+    [SerializeField]
+    float amountOfFellTrees;
+    [SerializeField]
+    float amountOfSaplings;
+    [SerializeField]
+    float amountOfStones;
+
     private int width = 256;
     private int height = 256;
     private int depth = 5;
@@ -29,7 +42,7 @@ public class TerrainGenerator : MonoBehaviour
         // ObjectSpawner
         {
             // Spawning trees
-            for (int i = 0; i < 5000; i++)
+            for (int i = 0; i < amountOfTrees; i++)
             {
                 int treeModel = Random.Range(0, TreePrefabs.Length);
                 // Generate random X and Z coordinates within a range
@@ -48,8 +61,47 @@ public class TerrainGenerator : MonoBehaviour
                 i++;
             }
 
+            for (int i = 0; i < amountOfFellTrees; i++)
+            {
+                int FelltreeModel = Random.Range(0, FellTreePrefabs.Length);
+                // Generate random X and Z coordinates within a range
+                float x = Random.Range(-128, 128);
+                float z = Random.Range(-128, 128);
+
+                // Use Terrain.SampleHeight to get the Y coordinate from the terrain
+                float y = terrain.SampleHeight(new Vector3(x, 0, z));
+
+                // Create a random spawn point with a slight height offset
+                Vector3 randomSpawnPoint = new Vector3(x, y, z);
+
+                // Instantiate the selected object at the random spawn point
+                Instantiate(FellTreePrefabs[FelltreeModel], randomSpawnPoint, Quaternion.identity);
+
+                i++;
+            }
+
+            for (int i = 0; i < amountOfSaplings; i++)
+            {
+                int saplingModel = Random.Range(0, SaplingPrefabs.Length);
+                // Generate random X and Z coordinates within a range
+                float x = Random.Range(-128, 128);
+                float z = Random.Range(-128, 128);
+
+                // Use Terrain.SampleHeight to get the Y coordinate from the terrain
+                float y = terrain.SampleHeight(new Vector3(x, 0, z));
+
+                // Create a random spawn point with a slight height offset
+                Vector3 randomSpawnPoint = new Vector3(x, y, z);
+
+                // Instantiate the selected object at the random spawn point
+                Instantiate(SaplingPrefabs[saplingModel], randomSpawnPoint, Quaternion.identity);
+
+                i++;
+            }
+
+
             // Spawning stones
-            for (int i = 0; i < 250; ++i)
+            for (int i = 0; i < amountOfStones; ++i)
             {
                 int stoneModel = Random.Range(0, StonePrefabs.Length);
                 // Generate random X and Z coordinates within a range

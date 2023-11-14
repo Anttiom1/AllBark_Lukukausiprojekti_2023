@@ -14,6 +14,14 @@ public class GameUI : MonoBehaviour
     
     private float timer;
 
+    public float Timer 
+    {  
+        get 
+        { 
+            return timer; 
+        }
+    }
+
     float charge = 0;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +36,6 @@ public class GameUI : MonoBehaviour
         //F1 defines how many decimal will be shown
         string formatedTime = timer.ToString("F1");
         timerText.text = formatedTime;
-        
+
     }
 }

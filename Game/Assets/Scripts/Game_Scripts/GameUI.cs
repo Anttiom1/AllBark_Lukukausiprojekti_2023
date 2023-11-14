@@ -13,6 +13,7 @@ public class GameUI : MonoBehaviour
     private TextMeshProUGUI timerText;
     
     private float timer;
+    private bool timerActive = false;
 
     public float Timer 
     {  
@@ -27,6 +28,7 @@ public class GameUI : MonoBehaviour
     void Start()
     {
         timer = 5;
+        timerActive = true;
     }
 
     // Update is called once per frame
@@ -36,12 +38,18 @@ public class GameUI : MonoBehaviour
         //F1 defines how many decimal will be shown
         string formatedTime = timer.ToString("F1");
         timerText.text = formatedTime;
-        if (timer < 0)
+        if (timer < 0 && timerActive == true)
         {
-            Debug.Log("test");
-            float score = 0;
-            HighScore.Instance.ShowInputQuery(score);
+            timerActive = false;
+            Debug.Log("timer test");
+            FinishTimer();
+            
         }
+    }
 
+    void FinishTimer()
+    {
+        float score = 0;
+        HighScore.Instance.ShowInputQuery(score);
     }
 }

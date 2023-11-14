@@ -37,7 +37,6 @@ public class Player : MonoBehaviour, IController
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(engineOn);
         if (chargeMeter != null)
         {
             chargeMeter.value = charge;

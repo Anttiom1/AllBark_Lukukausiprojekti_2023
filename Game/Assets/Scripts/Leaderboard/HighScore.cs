@@ -81,6 +81,7 @@ public class HighScore : MonoBehaviour
 
     public void ShowInputQuery(float score) 
     {
+        Debug.Log("TestHighScore");
         highScoreInput.GetComponent<HighScoreInput>().Score = score;
         highScoreInput.SetActive(true);
     }

@@ -26,7 +26,7 @@ public class GameUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 60;
+        timer = 5;
     }
 
     // Update is called once per frame
@@ -36,6 +36,12 @@ public class GameUI : MonoBehaviour
         //F1 defines how many decimal will be shown
         string formatedTime = timer.ToString("F1");
         timerText.text = formatedTime;
+        if (timer < 0)
+        {
+            Debug.Log("test");
+            float score = 0;
+            HighScore.Instance.ShowInputQuery(score);
+        }
 
     }
 }

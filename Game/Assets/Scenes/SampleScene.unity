@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 410571640}
   - component: {fileID: 410571639}
   - component: {fileID: 410571638}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SetHighScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,7 +656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 472720565}
   - component: {fileID: 472720566}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1324,7 +1324,7 @@ GameObject:
   - component: {fileID: 867235143}
   - component: {fileID: 867235145}
   - component: {fileID: 867235144}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1918,7 +1918,7 @@ GameObject:
   - component: {fileID: 1353209752}
   - component: {fileID: 1353209754}
   - component: {fileID: 1353209753}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1995,7 +1995,7 @@ GameObject:
   - component: {fileID: 1385515206}
   - component: {fileID: 1385515208}
   - component: {fileID: 1385515207}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Letter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2074,7 +2074,7 @@ GameObject:
   - component: {fileID: 1467639163}
   - component: {fileID: 1467639165}
   - component: {fileID: 1467639164}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Letter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2573,7 +2573,7 @@ GameObject:
   - component: {fileID: 1678148757}
   - component: {fileID: 1678148759}
   - component: {fileID: 1678148758}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2877,7 +2877,7 @@ GameObject:
   - component: {fileID: 1891334920}
   - component: {fileID: 1891334922}
   - component: {fileID: 1891334921}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Letter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

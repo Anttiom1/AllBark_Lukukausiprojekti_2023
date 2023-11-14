@@ -67,7 +67,9 @@ public class CustomController : MonoBehaviour
             inputValue = BitConverter.ToInt32(data, 0);
         else
             return;
-
-        Debug.Log("inputvalue: " + inputValue);
+    }
+    public int InputValue
+    {
+        get { return inputValue; }
     }
 }

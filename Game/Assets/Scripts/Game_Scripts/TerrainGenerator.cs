@@ -13,6 +13,8 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField]
     GameObject[] StonePrefabs;
     [SerializeField]
+    GameObject[] GasCannister;
+    [SerializeField]
     float amountOfTrees;
     [SerializeField]
     float amountOfFellTrees;
@@ -20,6 +22,8 @@ public class TerrainGenerator : MonoBehaviour
     float amountOfSaplings;
     [SerializeField]
     float amountOfStones;
+    [SerializeField]
+    float amountOfGasCannister;
 
     private int width = 256;
     private int height = 256;
@@ -116,6 +120,24 @@ public class TerrainGenerator : MonoBehaviour
 
                 // Instantiate the selected object at the random spawn point
                 Instantiate(StonePrefabs[stoneModel], randomSpawnPoint, Quaternion.identity);
+
+                i++;
+            }
+            for (int i = 0; i < amountOfGasCannister; i++)
+            {
+                int FelltreeModel = Random.Range(0, GasCannister.Length);
+                // Generate random X and Z coordinates within a range
+                float x = Random.Range(-128, 128);
+                float z = Random.Range(-128, 128);
+
+                // Use Terrain.SampleHeight to get the Y coordinate from the terrain
+                float y = terrain.SampleHeight(new Vector3(x, 0, z));
+
+                // Create a random spawn point with a slight height offset
+                Vector3 randomSpawnPoint = new Vector3(x, y, z);
+
+                // Instantiate the selected object at the random spawn point
+                Instantiate(GasCannister[0], randomSpawnPoint, Quaternion.identity);
 
                 i++;
             }

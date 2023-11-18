@@ -102,7 +102,7 @@ public class TerrainGenerator : MonoBehaviour
             // Create a random spawn point at the terrain height
             Vector3 randomSpawnPoint = new Vector3(x, y, z);
             // Spawns object if only terrains colliders in found
-            if (FindCollision(randomSpawnPoint) == 1)
+            if (FindCollision(randomSpawnPoint) < 2)
             {
                 Instantiate(gameObject[model], randomSpawnPoint, Quaternion.identity);
             }

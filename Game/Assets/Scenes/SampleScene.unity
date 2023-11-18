@@ -2265,8 +2265,8 @@ MonoBehaviour:
   GasCannister: []
   amountOfTrees: 5000
   amountOfFellTrees: 2000
-  amountOfSaplings: 1
-  amountOfStones: 1
+  amountOfSaplings: 2500
+  amountOfStones: 2500
   amountOfGasCannister: 0
 --- !u!154 &1520161548
 TerrainCollider:

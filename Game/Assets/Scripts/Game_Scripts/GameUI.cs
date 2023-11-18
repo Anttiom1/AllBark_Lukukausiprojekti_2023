@@ -27,7 +27,7 @@ public class GameUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 5;
+        timer = 500;
         timerActive = true;
     }
 

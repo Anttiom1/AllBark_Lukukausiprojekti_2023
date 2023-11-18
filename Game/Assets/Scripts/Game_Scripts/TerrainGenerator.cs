@@ -89,23 +89,34 @@ public class TerrainGenerator : MonoBehaviour
 
     private void SpawnObject(Terrain terrain, float amount, GameObject[] gameObject)
     {
-        for (int i = 0; i < amount; ++i)
+        for (int i = 0; i < amount; i++)
         {
             int model = Random.Range(0, gameObject.Length);
             // Generate random X and Z coordinates within a range
             float x = Random.Range(-128, 128);
             float z = Random.Range(-128, 128);
-
+            
             // Use Terrain.SampleHeight to get the Y coordinate from the terrain
             float y = terrain.SampleHeight(new Vector3(x, 0, z));
 
             // Create a random spawn point at the terrain height
             Vector3 randomSpawnPoint = new Vector3(x, y, z);
-
-            // Instantiate the selected object at the random spawn point
-            Instantiate(gameObject[model], randomSpawnPoint, Quaternion.identity);
-
-            i++;
+            // Spawns object if only terrains colliders in found
+            if (FindCollision(randomSpawnPoint) == 1)
+            {
+                Instantiate(gameObject[model], randomSpawnPoint, Quaternion.identity);
+            }
         }
     }
+
+    // Function to find the number of colliders within a spherical region at a given position
+    private int FindCollision(Vector3 pos)
+    {
+        // Use Physics.OverlapSphere to find colliders within the specified radius at the given position
+        // The result is an array of colliders that intersect with the sphere
+        Collider[] hits = Physics.OverlapSphere(pos, 1f);
+        // Return the number of colliders found in the specified layer
+        return hits.Length;
+    }
+
 }

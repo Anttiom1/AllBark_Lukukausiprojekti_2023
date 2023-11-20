@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FelledTree : myTree
 {
-    public override void Collide()
+    public override float Collide()
     {
         base.Collide();
         GameManager.instance.AddScore(1);
+        return base.Collide();
     }
 }

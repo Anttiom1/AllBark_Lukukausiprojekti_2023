@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IController
 {
-    [SerializeField]
-    private Slider chargeMeter;
     [SerializeField]
     private Slider gasMeter;
 
@@ -14,10 +13,11 @@ public class Player : MonoBehaviour, IController
     protected Vector3 movementVector;    // Vector for player movement
     protected float movementSpeed;       // Speed of player movement.
     protected float rotateSpeed;         // Speed of player rotation.
-    protected float charge;
     private float gas;
     private bool engineOn;
 
+
+    Terrain terrain;
     Animation PlayerAnimation;
     CustomController controller;
     
@@ -31,26 +31,35 @@ public class Player : MonoBehaviour, IController
         gas = 100;
         PlayerAnimation = GetComponent<Animation>();
         controller = GetComponentInChildren<CustomController>();
+        engineOn = false;
+        terrain = FindAnyObjectByType<Terrain>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (chargeMeter != null)
-        {
-            chargeMeter.value = charge;
-        }
-        if (gasMeter != null)
-        {
-            gasMeter.value = gas;
-        }
-        if (controller.InputValue == 1)
+        gasMeter.value = gas;
+        
+        if (Input.GetKeyDown(KeyCode.R)) 
         {
             if (gas > 0) 
             {
                 engineOn = true;
+                Debug.Log(engineOn);
             };
+        }
+        
+    }
+
+    void FixedUpdate()
+    {
+        if (engineOn)
+        {
+            rBody.velocity = transform.forward * movementSpeed;
+            float y = terrain.SampleHeight(new Vector3(rBody.transform.position.x, 0, rBody.transform.position.z));
+            Vector3 newPos = new Vector3(rBody.position.x, y+1, rBody.position.z);
+            rBody.MovePosition(newPos);
         }
     }
 
@@ -76,20 +85,6 @@ public class Player : MonoBehaviour, IController
         transform.Rotate(Vector3.up, (horizontalValue) * rotateSpeed * Time.deltaTime);
     }
 
-    // Handle charging movement based on charge input.
-    public virtual void ChargeMove(float charge, bool chargeDone)
-    {
-        // Apply velocity to the Rigidbody to move the player forward.
-        if (chargeDone)
-        {
-            GetComponent<Rigidbody>().velocity = transform.forward * charge;
-            PlayerAnimation.Play("RunAnimation");
-            //UI chargemeter
-            charge = 0;
-        }
-        this.charge = charge;
-    }
-
     // Handle collisions with other objects.
     private void OnTriggerEnter(Collider other)
     {
@@ -97,24 +92,24 @@ public class Player : MonoBehaviour, IController
         IObjectManager objectManager = other.GetComponent<IObjectManager>();
         //If objectManager interface is found executes the Collide method
         if (objectManager != null)
-        {
-            if (engineOn == true)
+        {   
+            gas = Mathf.Clamp( gas + objectManager.Collide(), 0, 100);
+            Debug.Log(gas);
+            if (gas == 0)
             {
-                objectManager.Collide();
-                gas = gas - 20;
-                if (gas == 0)
-                {
-                    engineOn = false;
-                }
-                PlayerAnimation.Play("IdleAnimation");
-                rBody.velocity = transform.forward * 0;
-            }
+                engineOn = false;
+                gas = 100;
+            } 
         }
         if (objectManager == null)
         {
             Debug.Log("Ei IObjectManageria");
         }
     }  
-    
 
+    public void Stop()
+    {
+        rBody.velocity = transform.forward * 0;
+        engineOn = false;
+    }
 }

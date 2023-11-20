@@ -114,7 +114,7 @@ public class TerrainGenerator : MonoBehaviour
     {
         // Use Physics.OverlapSphere to find colliders within the specified radius at the given position
         // The result is an array of colliders that intersect with the sphere
-        Collider[] hits = Physics.OverlapSphere(pos, 1f);
+        Collider[] hits = Physics.OverlapSphere(pos, 3f);
         // Return the number of colliders found in the specified layer
         return hits.Length;
     }

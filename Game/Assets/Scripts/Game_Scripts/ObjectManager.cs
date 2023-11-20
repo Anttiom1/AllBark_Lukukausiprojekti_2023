@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IObjectManager
 {
-    void Collide();
+    float Collide();
 }
 

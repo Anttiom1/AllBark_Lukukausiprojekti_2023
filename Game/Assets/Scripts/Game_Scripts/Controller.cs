@@ -9,8 +9,7 @@ public interface IController
 {
     // Method to handle axis input.
     public void Axis(float horizontalValue);
-    // Method to handle charge movement.
-    public void ChargeMove(float charge, bool chargeDone);
+
 }
 
 // Create a Controller class that interacts with the IController interface.
@@ -38,22 +37,5 @@ public class Controller
         // Call the Axis method on the IController instance, passing the horizontal value.
         listener.Axis(horizontal);
 
-        // Check if the "Jump" button is pressed.
-        if (Input.GetButton("Jump"))
-        {
-            charge = Mathf.Clamp(charge + 15 * Time.deltaTime, 0, 50); 
-            // Call the ChargeMove method on the IController instance, passing the charge value.
-            listener.ChargeMove(charge,chargeDone);
-        }
-
-        // Check if the "Jump" button is released.
-        if (Input.GetButtonUp("Jump"))
-        {
-            chargeDone = true;
-            listener.ChargeMove(charge,chargeDone);
-            // Reset the charge value to 0 after using it.
-            charge = 0;
-            chargeDone = false;
-        }
     }
 }

@@ -11,11 +11,12 @@ public class myTree : MonoBehaviour, IObjectManager
     {
         
     }
-    public virtual void Collide()
+    public virtual float Collide()
     {
         Vector3 position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
         Instantiate(Stump, position , Quaternion.identity);
         Destroy(gameObject);
+        return -10;
 
     }
 }

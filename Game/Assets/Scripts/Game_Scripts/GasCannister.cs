@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GasCannister : MonoBehaviour, IObjectManager
 {
-    public void Collide()
+    public float Collide()
     {
-
         Destroy(gameObject);
+        return 100;
     }
 }

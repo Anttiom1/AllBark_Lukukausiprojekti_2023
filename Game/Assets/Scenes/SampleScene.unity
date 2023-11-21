@@ -936,7 +936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4bff3a4201f3957469b7535223d8478b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 5.73
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4bff3a4201f3957469b7535223d8478b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1997,12 +1997,13 @@ MonoBehaviour:
   - {fileID: 7405846476849542632, guid: c6308cb7062fac34e8e50600086b12a1, type: 3}
   - {fileID: 8783306491908617939, guid: f02116c209ecd9e488fc4d2cd8996133, type: 3}
   - {fileID: 1576488453971893466, guid: a778b631c6253a04899cb31bad047c81, type: 3}
-  GasCannister: []
+  GasCannister:
+  - {fileID: 159274195921059188, guid: 330b1e4f1ccbfb14dae63396a431f381, type: 3}
   amountOfTrees: 5000
   amountOfFellTrees: 2000
   amountOfSaplings: 2500
   amountOfStones: 2500
-  amountOfGasCannister: 0
+  amountOfGasCannister: 1000
 --- !u!154 &1520161548
 TerrainCollider:
   m_ObjectHideFlags: 0

@@ -25,8 +25,8 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField]
     float amountOfGasCannister;
 
-    private int width = 256;
-    private int height = 256;
+    private int width = 512;
+    private int height = 512;
     private int depth = 5;
     private float scale = 5f;
     private float offsetX = 100f;

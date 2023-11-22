@@ -28,6 +28,8 @@ public class HighScoreInput : MonoBehaviour
     {
         selectedLetter = 0;
         listOfLetters[selectedLetter].GetComponent<Animator>().enabled = true;
+        listOfLetters[1].GetComponent<Animator>().enabled = false;
+        listOfLetters[2].GetComponent<Animator>().enabled = false;
         scoreText.text = score.ToString();
     }
 

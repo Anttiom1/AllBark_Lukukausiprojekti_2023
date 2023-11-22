@@ -9,6 +9,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreTextTMP;
     private int score = 0;
 
+    public int Score 
+    {  
+        get 
+        { 
+            return score; 
+        } 
+    }
+
     void Awake(){
         if (instance == null) {
             instance = this;

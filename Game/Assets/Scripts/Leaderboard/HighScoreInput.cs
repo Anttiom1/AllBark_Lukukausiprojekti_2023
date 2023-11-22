@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HighScoreInput : MonoBehaviour
 {
@@ -69,9 +70,11 @@ public class HighScoreInput : MonoBehaviour
         // Saving the set name when Return key (Enter) is pressed (input also temporary)
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            //Score = GameManager.instance.Score;
             HighScore.Instance.Save(listOfLetters[0].GetComponent<Text>().text
                 + listOfLetters[1].GetComponent<Text>().text +
                 listOfLetters[2].GetComponent<Text>().text, score);
+            SceneManager.LoadScene(0); // Load back to the main menu scene
         }
 
     }

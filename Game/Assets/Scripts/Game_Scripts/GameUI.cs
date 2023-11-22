@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameUI : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class GameUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 500;
+        timer = 60;
         timerActive = true;
     }
 
@@ -49,7 +50,8 @@ public class GameUI : MonoBehaviour
 
     void FinishTimer()
     {
-        float score = 0;
-        HighScore.Instance.ShowInputQuery(score);
+        // TODO: Pause/end game when the timer reaches 0, either here or somewhere else
+        float playerScore = GameManager.instance.Score;
+        HighScore.Instance.ShowInputQuery(playerScore);
     }
 }

@@ -9,6 +9,7 @@ public class MainMenuController : MonoBehaviour
     {
         // Open game scene
         SceneManager.LoadScene(1);
+        // Current bug: if the game scene is loaded a second time in a single session, the player character cannot be moved and console fills with errors
     }
 
     public void OpenLeaderboards()

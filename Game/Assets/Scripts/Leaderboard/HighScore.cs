@@ -43,7 +43,7 @@ public class HighScore : MonoBehaviour
         UpdateScoreBoard(highScoreStore.HighScoresList);
     }
 
-    // Show and Hide methods for the leaderboard, can be connected to the Main Menu UI later
+    // Show and Hide methods for the leaderboard
     public void Show()
     {
         highScoreBoard.SetActive(true);
@@ -81,7 +81,8 @@ public class HighScore : MonoBehaviour
 
     public void ShowInputQuery(float score) 
     {
-        Debug.Log("TestHighScore");
+        //Debug.Log("TestHighScore");
+        Debug.Log(score);
         highScoreInput.GetComponent<HighScoreInput>().Score = score;
         highScoreInput.SetActive(true);
     }

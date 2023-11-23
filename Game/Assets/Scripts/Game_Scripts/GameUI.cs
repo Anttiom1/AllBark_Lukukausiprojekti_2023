@@ -24,11 +24,10 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    float charge = 0;
-    // Start is called before the first frame update
+
     void Start()
     {
-        timer = 60;
+        timer = 500;
         timerActive = true;
     }
 

@@ -27,10 +27,10 @@ public class Player : MonoBehaviour, IController
     {
         Init();                         // Initialize the player.
         movementSpeed = 10;             // Set the movement speed.
-        rotateSpeed = 75;               // Set the rotation speed.
+        rotateSpeed = 5;               // Set the rotation speed.
         gas = 100;
         PlayerAnimation = GetComponent<Animation>();
-        controller = GetComponentInChildren<CustomController>();
+        controller = FindAnyObjectByType<CustomController>();
         engineOn = false;
         terrain = FindAnyObjectByType<Terrain>();
         
@@ -40,7 +40,6 @@ public class Player : MonoBehaviour, IController
     void Update()
     {
         gasMeter.value = gas;
-        
         if (Input.GetKeyDown(KeyCode.R)) 
         {
             if (gas > 0) 
@@ -82,7 +81,7 @@ public class Player : MonoBehaviour, IController
     public virtual void Axis(float horizontalValue)
     {
         // Rotate the player around the y-axis based on the horizontal input.
-        transform.Rotate(Vector3.up, (horizontalValue) * rotateSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, controller.XQuart * rotateSpeed * Time.deltaTime);
     }
 
     // Handle collisions with other objects.

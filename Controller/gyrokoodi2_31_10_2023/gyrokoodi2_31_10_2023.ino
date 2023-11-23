@@ -128,7 +128,7 @@ void mpu_setup() {
 void setup(void) {
   Serial.begin(115200);
   mpu_setup();
-  
+
   BLEDevice::init("AllBark");
   BLEServer *pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
@@ -147,7 +147,6 @@ void setup(void) {
   pCharacteristic->addDescriptor(new BLE2902());
   pService->start();
   pServer->getAdvertising()->start();
-
 }
 
 void mpu_loop() {
@@ -185,22 +184,45 @@ void mpu_loop() {
 #ifdef OUTPUT_READABLE_QUATERNION
     // display quaternion values in easy matrix form: w x y z
     mpu.dmpGetQuaternion(&q, fifoBuffer);
-    int i = 0;
+    int i = 1;
     int x = q.x * 100;
-    i |= x;
-    i = i<<8;
+    int y = q.y * 100;
     Serial.print("x: ");
     Serial.println(x);
+    Serial.print("y: ");
+    Serial.println(y);
+    if (x <= 0) {
+      i = i<<1;
+      i |= 1;
+      x = x * -1;
+    }
+    else if (x > 0){
+      i = i<<1;
+    }
+    if (y <= 0) {
+      i = i<<1;
+      i |= 1;
+      y = y * -1;
+    }
+    else if(y > 0)
+    {
+      i = i<<1;
+    }
+    i = i << 8;
+    i |= x;
+    i = i << 8;
+    i |= y;
     Serial.print("i BIN: ");
     Serial.println(i, BIN);
+    if (deviceConnected) {
+      pCharacteristic->setValue(i);
+      pCharacteristic->notify();
+    }
 #endif
   }
 }
 
 
 void loop(void) {
-  if (deviceConnected) {
-    Serial.println("Device Connected");
-  }
   mpu_loop();
 }

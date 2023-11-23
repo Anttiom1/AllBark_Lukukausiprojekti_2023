@@ -49,7 +49,12 @@ public class CustomController : MonoBehaviour
     /// input Value
     /// </summary>
     static int inputValue;
-
+    private string x;
+    private string y;
+    private string posNeg;
+    private int xQuart;
+    private int yQuart;
+    
 
     /***************************************************************************
      * UNITY MESSAGES
@@ -67,9 +72,41 @@ public class CustomController : MonoBehaviour
             inputValue = BitConverter.ToInt32(data, 0);
         else
             return;
+        string rawBinary = Convert.ToString(inputValue, 2);
+        x = rawBinary.Substring(3, 8);
+        y = rawBinary.Substring(rawBinary.Length - 8);
+        posNeg = rawBinary.Substring(0, 3);
+        xQuart = Convert.ToInt32(x, 2);
+        yQuart = Convert.ToInt32(y, 2);
+        
+        if(posNeg == "110")
+        {
+            xQuart *= -1;
+        }
+        if(posNeg == "101")
+        {
+            yQuart *= -1;
+        }
+        if (posNeg == "111")
+        {
+            xQuart *= -1;
+            yQuart *= -1;
+        }
+        Debug.Log(xQuart);
+        Debug.Log(yQuart);
     }
+
     public int InputValue
     {
         get { return inputValue; }
+    }
+
+    public int XQuart
+    {
+        get { return xQuart; }
+    }
+    public int YQuart
+    {
+        get { return yQuart; }
     }
 }

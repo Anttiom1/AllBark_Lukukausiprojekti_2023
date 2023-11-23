@@ -15,8 +15,6 @@ public interface IController
 // Create a Controller class that interacts with the IController interface.
 public class Controller
 {
-    float charge = 0; // Initialize a charge variable to keep track of charging.
-    bool chargeDone = false;
     private IController listener;
 
     // Constructor for the Controller class, accepting an instance of IController.

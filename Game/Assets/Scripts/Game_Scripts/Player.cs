@@ -40,14 +40,6 @@ public class Player : MonoBehaviour, IController
     void Update()
     {
         gasMeter.value = gas;
-        if (Input.GetKeyDown(KeyCode.R)) 
-        {
-            if (gas > 0) 
-            {
-                engineOn = true;
-                Debug.Log(engineOn);
-            };
-        }
         
     }
 
@@ -106,6 +98,10 @@ public class Player : MonoBehaviour, IController
         }
     }  
 
+    public bool EngineOn
+    {
+        set { engineOn = value; }
+    }
     public void Stop()
     {
         rBody.velocity = transform.forward * 0;

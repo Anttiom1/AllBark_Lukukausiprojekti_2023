@@ -24,7 +24,7 @@ class MyServerCallbacks : public BLEServerCallbacks {
 
   void onDisconnect(BLEServer *pServer) {
     deviceConnected = false;
-    pServer->startAdvertising(); 
+    pServer->startAdvertising();
   }
 };
 
@@ -36,6 +36,9 @@ BLECharacteristic *pCharacteristica;
 #define LED_PIN 17           //
 #define ANALOG_THRESHOLD 1500
 #define INTERRUPT_PIN 39
+
+int revolutionCounter;
+bool shouldStart;
 
 // MPU control/status vars
 bool dmpReady = false;   // set true if DMP init was successful
@@ -128,6 +131,9 @@ void mpu_setup() {
 
 void setup(void) {
   Serial.begin(115200);
+  pinMode(LED_PIN, OUTPUT);
+  int revolutionCounter = 0;
+  bool shouldStart = false;
   mpu_setup();
 
   BLEDevice::init("AllBark");
@@ -188,26 +194,30 @@ void mpu_loop() {
     int i = 1;
     int x = q.x * 100;
     int y = q.y * 100;
-    Serial.print("x: ");
-    Serial.println(x);
-    Serial.print("y: ");
-    Serial.println(y);
+    //Serial.print("x: ");
+    //Serial.println(x);
+    //Serial.print("y: ");
+    //Serial.println(y);
     if (x <= 0) {
-      i = i<<1;
+      i = i << 1;
       i |= 1;
       x = x * -1;
-    }
-    else if (x > 0){
-      i = i<<1;
+    } else if (x > 0) {
+      i = i << 1;
     }
     if (y <= 0) {
-      i = i<<1;
+      i = i << 1;
       i |= 1;
       y = y * -1;
+    } else if (y > 0) {
+      i = i << 1;
     }
-    else if(y > 0)
-    {
-      i = i<<1;
+    if(shouldStart == true){
+      i = i << 1;
+      i |= 1;
+    }
+    else if (shouldStart == false){
+      i = i << 1;
     }
     i = i << 8;
     i |= x;
@@ -218,6 +228,7 @@ void mpu_loop() {
     if (deviceConnected) {
       pCharacteristic->setValue(i);
       pCharacteristic->notify();
+      shouldStart = false;
     }
 #endif
   }
@@ -226,4 +237,15 @@ void mpu_loop() {
 
 void loop(void) {
   mpu_loop();
+  int analogValue = analogRead(LIGHT_SENSOR_PIN);
+  //Serial.println(analogValue);
+  if (analogValue > 1500) 
+  {
+    revolutionCounter = revolutionCounter + 1;
+    if (revolutionCounter >= 4)
+    {
+      shouldStart = true;
+      revolutionCounter = 0;
+    }
+  }
 }

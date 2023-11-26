@@ -54,12 +54,16 @@ public class CustomController : MonoBehaviour
     private string posNeg;
     private int xQuart;
     private int yQuart;
-    
+    private string startSignal;
+    private Player player;
 
     /***************************************************************************
      * UNITY MESSAGES
      **************************************************************************/
-
+    private void Start()
+    {
+        player = FindAnyObjectByType<Player>();
+    }
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
@@ -73,9 +77,10 @@ public class CustomController : MonoBehaviour
         else
             return;
         string rawBinary = Convert.ToString(inputValue, 2);
-        x = rawBinary.Substring(3, 8);
+        x = rawBinary.Substring(4, 8);
         y = rawBinary.Substring(rawBinary.Length - 8);
         posNeg = rawBinary.Substring(0, 3);
+        startSignal = rawBinary.Substring(3, 1);
         xQuart = Convert.ToInt32(x, 2);
         yQuart = Convert.ToInt32(y, 2);
         
@@ -91,6 +96,10 @@ public class CustomController : MonoBehaviour
         {
             xQuart *= -1;
             yQuart *= -1;
+        }
+        if (startSignal == "1")
+        {
+            player.EngineOn = true;
         }
         Debug.Log(xQuart);
         Debug.Log(yQuart);

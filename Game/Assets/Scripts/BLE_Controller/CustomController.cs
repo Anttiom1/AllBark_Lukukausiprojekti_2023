@@ -101,8 +101,8 @@ public class CustomController : MonoBehaviour
         {
             player.EngineOn = true;
         }
-        Debug.Log(xQuart);
-        Debug.Log(yQuart);
+        Debug.Log("x: "+ xQuart);
+        Debug.Log("y: "+ yQuart);
     }
 
     public int InputValue

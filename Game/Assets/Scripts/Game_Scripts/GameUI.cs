@@ -49,8 +49,6 @@ public class GameUI : MonoBehaviour
 
     void FinishTimer()
     {
-        // TODO: Pause/end game when the timer reaches 0, either here or somewhere else
-        float playerScore = GameManager.instance.Score;
-        HighScore.Instance.ShowInputQuery(playerScore);
+        SceneManager.LoadScene(2);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -986,6 +986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4bff3a4201f3957469b7535223d8478b, type: 3}
+      propertyPath: m_TagString
+      value: player
+      objectReference: {fileID: 0}
     - target: {fileID: 2223639932434330405, guid: 4bff3a4201f3957469b7535223d8478b, type: 3}
       propertyPath: m_Animation
       value: 
@@ -1444,7 +1448,6 @@ GameObject:
   - component: {fileID: 1129283243}
   - component: {fileID: 1129283249}
   - component: {fileID: 1129283247}
-  - component: {fileID: 1129283250}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -1559,22 +1562,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129283242}
   m_CullTransparentMesh: 1
---- !u!114 &1129283250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129283242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b314a32453964f41a4d384392307b5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highScoreTable: {fileID: 472720564}
-  highScoreElement: {fileID: 1678148756}
-  highScoreBoard: {fileID: 1353209751}
-  highScoreInput: {fileID: 410571636}
 --- !u!1 &1331385129
 GameObject:
   m_ObjectHideFlags: 0

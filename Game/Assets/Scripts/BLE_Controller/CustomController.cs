@@ -118,4 +118,8 @@ public class CustomController : MonoBehaviour
     {
         get { return yQuart; }
     }
+    public string StartSignal
+    {
+        get { return startSignal;  }
+    }
 }

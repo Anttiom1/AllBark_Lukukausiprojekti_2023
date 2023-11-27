@@ -11,6 +11,7 @@ public class ButtonNavigator : MonoBehaviour
     private CustomController controller;
     private int inputValue;
     private int buttonThreshold;
+    private string enterSignal;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class ButtonNavigator : MonoBehaviour
     void Update() // Usage: Arrow keys and enter for navigation for main menu
     {
         inputValue = controller.YQuart;
+        enterSignal = controller.StartSignal;
         if (inputValue >= buttonThreshold + 10)
         {
             currentButtonIndex = (currentButtonIndex + 1) % buttons.Length;
@@ -37,7 +39,7 @@ public class ButtonNavigator : MonoBehaviour
             buttonThreshold = controller.YQuart;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (enterSignal == "1")
         {
             buttons[currentButtonIndex].onClick.Invoke();
         }

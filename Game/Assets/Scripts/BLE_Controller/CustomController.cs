@@ -63,6 +63,7 @@ public class CustomController : MonoBehaviour
     private void Start()
     {
         player = FindAnyObjectByType<Player>();
+        DontDestroyOnLoad(this);
     }
 
     /// <summary>

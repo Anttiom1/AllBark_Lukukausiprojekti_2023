@@ -64,6 +64,8 @@ public class CustomController : MonoBehaviour
     {
         player = FindAnyObjectByType<Player>();
         DontDestroyOnLoad(this);
+        Debug.Log("customcontroller start");
+
     }
 
     /// <summary>
@@ -71,12 +73,18 @@ public class CustomController : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if (player == null)
+        {
+            Debug.Log("player is empty");
+            player = FindAnyObjectByType<Player>();
+        }
         byte[] data = bleConnection.Data;
 
         if (data != null)
             inputValue = BitConverter.ToInt32(data, 0);
         else
             return;
+
         string rawBinary = Convert.ToString(inputValue, 2);
         x = rawBinary.Substring(4, 8);
         y = rawBinary.Substring(rawBinary.Length - 8);
@@ -84,8 +92,8 @@ public class CustomController : MonoBehaviour
         startSignal = rawBinary.Substring(3, 1);
         xQuart = Convert.ToInt32(x, 2);
         yQuart = Convert.ToInt32(y, 2);
-        
-        if(posNeg == "110")
+
+        if (posNeg == "110")
         {
             xQuart *= -1;
         }
@@ -100,10 +108,11 @@ public class CustomController : MonoBehaviour
         }
         if (startSignal == "1")
         {
+            Debug.Log("lol");
             player.EngineOn = true;
         }
-        Debug.Log("x: "+ xQuart);
-        Debug.Log("y: "+ yQuart);
+        //Debug.Log("x: "+ xQuart);
+        //Debug.Log("y: "+ yQuart);
     }
 
     public int InputValue

@@ -8,7 +8,7 @@ public class myTree : MonoBehaviour, IObjectManager
     // Tree falling speed
     private float fallingSpeed = 65f; 
     // Angle where tree -> stump
-    private float maxFallingAngle = 45f; 
+    private float maxFallingAngle = 40f; 
 
     void Start()
     {

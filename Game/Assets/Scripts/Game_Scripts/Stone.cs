@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Stone : MonoBehaviour, IObjectManager
 {
-    private AudioSource audioSource; // Tässä määritellään audioSource
+    private AudioSource audioSource; 
 
     void Start()
     {
-        // Tässä haetaan ja tallennetaan AudioSource-komponentti audioSource-muuttujaan
+        // Audio source component
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -22,7 +22,7 @@ public class Stone : MonoBehaviour, IObjectManager
         {
             player.Stop();
 
-            // Tarkista, onko audioSource määritelty ja toista ääni
+            // Check for audio source and play sound
             if (audioSource != null)
             {
                 audioSource.Play();

@@ -42,6 +42,10 @@ public class Player : MonoBehaviour
     {
         gasMeter.value = gas;
         Axis();
+        if(controller.Counter == 666)
+        {
+            engineOn = true;
+        }
     }
 
     void FixedUpdate()
@@ -86,7 +90,7 @@ public class Player : MonoBehaviour
             Debug.Log(gas);
             if (gas == 0)
             {
-                engineOn = false;
+                engineOn = true;
                 gas = 100;
             } 
         }

@@ -21,6 +21,10 @@ public class ButtonNavigator : MonoBehaviour
 
     void Update() // Usage: Arrow keys and enter for navigation for main menu
     {
+        if (controller == null)
+        {
+            controller = FindAnyObjectByType<CustomController>();
+        }
         inputValue = controller.XQuart;
         enterSignal = controller.StartSignal;
         if (inputValue >= buttonThreshold + 20)
@@ -39,7 +43,7 @@ public class ButtonNavigator : MonoBehaviour
             buttonThreshold = controller.XQuart;
         }
 
-        if (controller.StartSignal == "1")
+        if (controller.Counter == 333)
         {
             buttons[currentButtonIndex].onClick.Invoke();
         }

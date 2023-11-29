@@ -55,7 +55,7 @@ public class CustomController : MonoBehaviour
     private int zQuart;
     private string startSignal;
     private Player player;
-    private bool startCooldown;
+    private int counter;
     private bool enter;
 
     /***************************************************************************
@@ -71,6 +71,7 @@ public class CustomController : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         DontDestroyOnLoad(this);
         Debug.Log("customcontroller start");
+        counter = 0;
 
     }
 
@@ -79,7 +80,8 @@ public class CustomController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        Debug.Log("enter:"+enter);
+        Debug.Log("counter" + counter);
+
         if (player == null)
         {
             Debug.Log("player is empty");
@@ -115,10 +117,15 @@ public class CustomController : MonoBehaviour
         }
         if (startSignal == "1")
         {
-            //player.EngineOn = true;
+            counter++;
+               
         }
-        
-        
+        if (counter >= 1001)
+        {
+            counter = 0;
+        }
+
+
         //Debug.Log("x: "+ xQuart);
         //Debug.Log("y: "+ yQuart);
     }
@@ -144,6 +151,10 @@ public class CustomController : MonoBehaviour
     public string StartSignal
     {
         get { return startSignal;  }
+    }
+    public int Counter
+    {
+        get { return counter; }
     }
 
 }

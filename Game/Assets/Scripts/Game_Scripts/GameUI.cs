@@ -27,7 +27,7 @@ public class GameUI : MonoBehaviour
 
     void Start()
     {
-        timer = 5;
+        timer = 60;
         timerActive = true;
     }
 

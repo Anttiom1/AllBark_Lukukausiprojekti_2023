@@ -43,7 +43,10 @@ public class MainMenuController : MonoBehaviour
 
     void Update()
     {
-        
+        if (controller == null)
+        {
+            controller = FindAnyObjectByType<CustomController>();
+        }
     }
     IEnumerator WaitAndHide()
     {

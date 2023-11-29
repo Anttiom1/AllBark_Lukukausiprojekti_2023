@@ -61,38 +61,40 @@ public class HighScoreInput : MonoBehaviour
         // Calling the corresponding method to change which of the three letters is selected, and
         // which letter of the alphabet is set
         // Inputs are temporary, later to be changed to use the custom controller imputs
-        if (controller.ZQuart > 10)
+        if (controller.ZQuart > zbuttonThreshold+10)
         {
             PrevLetter();
-            
+            zbuttonThreshold = controller.ZQuart;
         }
 
-        if (controller.ZQuart < -10)
+        if (controller.ZQuart < zbuttonThreshold -10)
         {
             NextLetter();
-            
+            zbuttonThreshold = controller.ZQuart;
         }
 
-        if (controller.XQuart > 10)
+        if (controller.XQuart > xbuttonThreshold+10)
         {
             NextAlphabet();
             xbuttonThreshold = controller.XQuart;
         }
 
-        if (controller.XQuart < -10)
+        if (controller.XQuart < xbuttonThreshold-10)
         {
             PrevAlphabet();
+            xbuttonThreshold = controller.XQuart;
             
         }
 
         // Saving the set name when Return key (Enter) is pressed (input also temporary)
-        if (controller.StartSignal == "1")
+        if (controller.Counter == 999)
         {
             //Score = GameManager.instance.Score;
             HighScore.Instance.Save(listOfLetters[0].GetComponent<Text>().text
                 + listOfLetters[1].GetComponent<Text>().text +
                 listOfLetters[2].GetComponent<Text>().text, score);
             SceneManager.LoadScene(0); // Load back to the main menu scene
+
         }
 
     }

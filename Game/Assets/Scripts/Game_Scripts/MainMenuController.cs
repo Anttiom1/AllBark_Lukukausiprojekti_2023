@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject tutorialWindow;
     private CustomController controller;
     private bool cooldown;
 
@@ -17,6 +19,12 @@ public class MainMenuController : MonoBehaviour
         // Open game scene
         SceneManager.LoadScene(1);
         // Current bug: if the game scene is loaded a second time in a single session, the player character cannot be moved and console fills with errors
+    }
+
+    public void ShowTutorial()
+    {
+        tutorialWindow.SetActive(true);
+        StartCoroutine(HideTutorial());
     }
 
     public void OpenLeaderboards()
@@ -41,5 +49,11 @@ public class MainMenuController : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         HighScore.Instance.Hide();
+        tutorialWindow.SetActive(false);
+    }
+    IEnumerator HideTutorial()
+    {
+        yield return new WaitForSeconds(10);
+        tutorialWindow.SetActive(false);
     }
 }

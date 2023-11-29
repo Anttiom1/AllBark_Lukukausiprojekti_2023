@@ -1451,8 +1451,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Select letter by turning controller\nValitse kirjain k\xE4\xE4nt\xE4m\xE4ll\xE4
-    ohjainta"
+  m_Text: "Select letter or change selection by turning controller\nValitse kirjain
+    tai vaihda valintaa k\xE4\xE4nt\xE4m\xE4ll\xE4 ohjainta"
 --- !u!222 &1694153115
 CanvasRenderer:
   m_ObjectHideFlags: 0

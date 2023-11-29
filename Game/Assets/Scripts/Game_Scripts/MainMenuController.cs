@@ -11,7 +11,6 @@ public class MainMenuController : MonoBehaviour
     void Start()
     {
         controller = FindAnyObjectByType<CustomController>();
-        cooldown = false;
     }
     public void PlayGame()
     {
@@ -24,6 +23,7 @@ public class MainMenuController : MonoBehaviour
     {
         // Leaderboards code here --
         HighScore.Instance.Show();
+        StartCoroutine(WaitAndHide());
     }
 
     public void QuitGame()
@@ -35,22 +35,11 @@ public class MainMenuController : MonoBehaviour
 
     void Update()
     {
-        // Hiding the leaderboard with an input when it is visible, later to be replaced with controller input
-        if (controller.StartSignal == "1")
-        {
-            if (!cooldown)
-            {
-                HighScore.Instance.Hide();
-                Debug.Log("test");
-                cooldown = true;
-                StartCoroutine(Wait());
-            }
-            
-        }
+        
     }
-    IEnumerator Wait()
+    IEnumerator WaitAndHide()
     {
-        yield return new WaitForSeconds(1);
-        cooldown = false;
+        yield return new WaitForSeconds(5);
+        HighScore.Instance.Hide();
     }
 }

@@ -40,7 +40,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gasMeter.value = gas;
         Axis();
         if(controller.Counter == 666)
         {

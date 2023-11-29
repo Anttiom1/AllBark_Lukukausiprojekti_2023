@@ -13,8 +13,6 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField]
     GameObject[] StonePrefabs;
     [SerializeField]
-    GameObject[] GasCannister;
-    [SerializeField]
     float amountOfTrees;
     [SerializeField]
     float amountOfFellTrees;
@@ -22,8 +20,6 @@ public class TerrainGenerator : MonoBehaviour
     float amountOfSaplings;
     [SerializeField]
     float amountOfStones;
-    [SerializeField]
-    float amountOfGasCannister;
 
     private int width = 512;
     private int height = 512;
@@ -47,7 +43,6 @@ public class TerrainGenerator : MonoBehaviour
         SpawnObject(terrain, amountOfFellTrees, FellTreePrefabs);
         SpawnObject(terrain, amountOfSaplings, SaplingPrefabs);
         SpawnObject(terrain, amountOfStones, StonePrefabs);
-        SpawnObject(terrain, amountOfGasCannister, GasCannister);
 
     }
 

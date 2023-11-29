@@ -16,7 +16,7 @@ public class ButtonNavigator : MonoBehaviour
     private void Start()
     {
         controller = FindAnyObjectByType<CustomController>();
-        buttonThreshold = controller.XQuart;
+        buttonThreshold = controller.ZQuart;
     }
 
     void Update() // Usage: Arrow keys and enter for navigation for main menu
@@ -25,13 +25,13 @@ public class ButtonNavigator : MonoBehaviour
         {
             controller = FindAnyObjectByType<CustomController>();
         }
-        inputValue = controller.XQuart;
+        inputValue = controller.ZQuart;
         enterSignal = controller.StartSignal;
         if (inputValue >= buttonThreshold + 20)
         {
             currentButtonIndex = (currentButtonIndex + 1) % buttons.Length;
             EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
-            buttonThreshold = controller.XQuart;
+            buttonThreshold = controller.ZQuart;
         }
 
         if (inputValue <= buttonThreshold - 20)
@@ -40,7 +40,7 @@ public class ButtonNavigator : MonoBehaviour
                 currentButtonIndex = buttons.Length;
             currentButtonIndex = (currentButtonIndex - 1) % buttons.Length;
             EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
-            buttonThreshold = controller.XQuart;
+            buttonThreshold = controller.ZQuart;
         }
 
         if (controller.Counter == 333)

@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    private CustomController controller;
+    private bool cooldown;
+
+    void Start()
+    {
+        controller = FindAnyObjectByType<CustomController>();
+        cooldown = false;
+    }
     public void PlayGame()
     {
         // Open game scene
@@ -24,17 +32,25 @@ public class MainMenuController : MonoBehaviour
         Application.Quit();
     }
 
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
         // Hiding the leaderboard with an input when it is visible, later to be replaced with controller input
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (controller.StartSignal == "1")
         {
-            HighScore.Instance.Hide();
+            if (!cooldown)
+            {
+                HighScore.Instance.Hide();
+                Debug.Log("test");
+                cooldown = true;
+                StartCoroutine(Wait());
+            }
+            
         }
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        cooldown = false;
     }
 }

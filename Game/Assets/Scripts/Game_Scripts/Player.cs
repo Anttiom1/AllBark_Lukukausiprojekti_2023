@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour, IController
+public class Player : MonoBehaviour
 {
     [SerializeField]
     private Slider gasMeter;
@@ -15,6 +15,7 @@ public class Player : MonoBehaviour, IController
     protected float rotateSpeed;         // Speed of player rotation.
     private float gas;
     private bool engineOn;
+    private int zThreshold;
 
 
     Terrain terrain;
@@ -33,14 +34,14 @@ public class Player : MonoBehaviour, IController
         controller = FindAnyObjectByType<CustomController>();
         engineOn = false;
         terrain = FindAnyObjectByType<Terrain>();
-        
+        zThreshold = controller.ZQuart;
     }
 
     // Update is called once per frame
     void Update()
     {
         gasMeter.value = gas;
-        
+        Axis();
     }
 
     void FixedUpdate()
@@ -64,16 +65,13 @@ public class Player : MonoBehaviour, IController
             this.gameObject.SetActive(false);  // Disable the game object if the Rigidbody is not found.
             Debug.LogError("Player Init() - RigidBody not found");
         }
-
-        // Create a Controller instance and pass 'this' (the current Player) as an IController.
-        Controller myController = new Controller(this);
     }
 
     // Handle horizontal axis input for player rotation.
-    public virtual void Axis(float horizontalValue)
+    public void Axis()
     {
         // Rotate the player around the y-axis based on the horizontal input.
-        transform.Rotate(Vector3.up, controller.XQuart * rotateSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, controller.ZQuart * rotateSpeed * Time.deltaTime);
     }
 
     // Handle collisions with other objects.

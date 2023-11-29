@@ -36,7 +36,6 @@ using UnityEngine;
 /// </summary>
 public class CustomController : MonoBehaviour
 {
-
     /***************************************************************************
      * ATTRIBUTES
      **************************************************************************/
@@ -50,18 +49,25 @@ public class CustomController : MonoBehaviour
     /// </summary>
     static int inputValue;
     private string x;
-    private string y;
+    private string z;
     private string posNeg;
     private int xQuart;
-    private int yQuart;
+    private int zQuart;
     private string startSignal;
     private Player player;
+    private bool startCooldown;
+    private bool enter;
 
     /***************************************************************************
      * UNITY MESSAGES
      **************************************************************************/
     private void Start()
     {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("controller");
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
         player = FindAnyObjectByType<Player>();
         DontDestroyOnLoad(this);
         Debug.Log("customcontroller start");
@@ -73,6 +79,7 @@ public class CustomController : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        Debug.Log("enter:"+enter);
         if (player == null)
         {
             Debug.Log("player is empty");
@@ -87,11 +94,11 @@ public class CustomController : MonoBehaviour
 
         string rawBinary = Convert.ToString(inputValue, 2);
         x = rawBinary.Substring(4, 8);
-        y = rawBinary.Substring(rawBinary.Length - 8);
+        z = rawBinary.Substring(rawBinary.Length - 8);
         posNeg = rawBinary.Substring(0, 3);
         startSignal = rawBinary.Substring(3, 1);
         xQuart = Convert.ToInt32(x, 2);
-        yQuart = Convert.ToInt32(y, 2);
+        zQuart = Convert.ToInt32(z, 2) * -1;
 
         if (posNeg == "110")
         {
@@ -99,20 +106,26 @@ public class CustomController : MonoBehaviour
         }
         if(posNeg == "101")
         {
-            yQuart *= -1;
+            zQuart *= -1;
         }
         if (posNeg == "111")
         {
             xQuart *= -1;
-            yQuart *= -1;
+            zQuart *= -1;
         }
         if (startSignal == "1")
         {
-            Debug.Log("lol");
-            player.EngineOn = true;
+            //player.EngineOn = true;
         }
+        
+        
         //Debug.Log("x: "+ xQuart);
         //Debug.Log("y: "+ yQuart);
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1);
     }
 
     public int InputValue
@@ -124,12 +137,13 @@ public class CustomController : MonoBehaviour
     {
         get { return xQuart; }
     }
-    public int YQuart
+    public int ZQuart
     {
-        get { return yQuart; }
+        get { return zQuart; }
     }
     public string StartSignal
     {
         get { return startSignal;  }
     }
+
 }

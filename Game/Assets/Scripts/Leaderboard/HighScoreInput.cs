@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class HighScoreInput : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class HighScoreInput : MonoBehaviour
 
     private Color defaultColor;
 
+    private CustomController controller;
+    private int xbuttonThreshold;
+    private int zbuttonThreshold;
+
+
     // OnEnable is called when the object becomes enabled and active
     void OnEnable()
     {
@@ -38,37 +44,49 @@ public class HighScoreInput : MonoBehaviour
     void Awake()
     {
         defaultColor = listOfLetters[selectedLetter].GetComponent<Text>().color;
+        
     }
 
+    private void Start()
+    {
+        controller = FindAnyObjectByType<CustomController>();
+        xbuttonThreshold = controller.XQuart;
+        zbuttonThreshold = controller.ZQuart;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        
         // Calling the corresponding method to change which of the three letters is selected, and
         // which letter of the alphabet is set
         // Inputs are temporary, later to be changed to use the custom controller imputs
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (controller.ZQuart > 10)
         {
             PrevLetter();
+            
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (controller.ZQuart < -10)
         {
             NextLetter();
+            
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (controller.XQuart > 10)
         {
             NextAlphabet();
+            xbuttonThreshold = controller.XQuart;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (controller.XQuart < -10)
         {
             PrevAlphabet();
+            
         }
 
         // Saving the set name when Return key (Enter) is pressed (input also temporary)
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (controller.StartSignal == "1")
         {
             //Score = GameManager.instance.Score;
             HighScore.Instance.Save(listOfLetters[0].GetComponent<Text>().text

@@ -33,7 +33,7 @@ BLECharacteristic *pCharacteristica;
 
 // constants won't change
 #define LIGHT_SENSOR_PIN 36  // ESP32 pin GPIO36 (ADC0) connected to light sensor
-#define LED_PIN 17           //
+#define LED_PIN 18           //
 #define ANALOG_THRESHOLD 1500
 #define INTERRUPT_PIN 39
 
@@ -194,10 +194,13 @@ void mpu_loop() {
     int i = 1;
     int x = q.x * 100;
     int y = q.y * 100;
+    int z = q.z * 100;
     //Serial.print("x: ");
     //Serial.println(x);
     //Serial.print("y: ");
     //Serial.println(y);
+    //Serial.print("z: ");
+    //Serial.println(z);
     if (x <= 0) {
       i = i << 1;
       i |= 1;
@@ -205,11 +208,11 @@ void mpu_loop() {
     } else if (x > 0) {
       i = i << 1;
     }
-    if (y <= 0) {
+    if (z <= 0) {
       i = i << 1;
       i |= 1;
-      y = y * -1;
-    } else if (y > 0) {
+      z = z * -1;
+    } else if (z > 0) {
       i = i << 1;
     }
     if(shouldStart == true){
@@ -222,9 +225,9 @@ void mpu_loop() {
     i = i << 8;
     i |= x;
     i = i << 8;
-    i |= y;
-    Serial.print("i BIN: ");
-    Serial.println(i, BIN);
+    i |= z;
+    //Serial.print("i BIN: ");
+    //Serial.println(i, BIN);
     if (deviceConnected) {
       pCharacteristic->setValue(i);
       pCharacteristic->notify();
@@ -237,9 +240,10 @@ void mpu_loop() {
 
 void loop(void) {
   mpu_loop();
+  digitalWrite(LED_PIN, HIGH);
   int analogValue = analogRead(LIGHT_SENSOR_PIN);
-  //Serial.println(analogValue);
-  if (analogValue > 1500) 
+  Serial.println(analogValue);
+  if (analogValue > ANALOG_THRESHOLD) 
   {
     revolutionCounter = revolutionCounter + 1;
     if (revolutionCounter >= 4)

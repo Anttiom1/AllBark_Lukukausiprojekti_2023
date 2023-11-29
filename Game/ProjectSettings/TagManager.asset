@@ -6,6 +6,7 @@ TagManager:
   tags:
   - hiscoreui
   - player
+  - controller
   layers:
   - Default
   - TransparentFX

@@ -27,14 +27,30 @@ public class ButtonNavigator : MonoBehaviour
         }
         inputValue = controller.ZQuart;
         enterSignal = controller.StartSignal;
-        if (inputValue >= buttonThreshold + 20)
+        /*if (inputValue >= buttonThreshold + 20)
+        {
+            currentButtonIndex = (currentButtonIndex + 1) % buttons.Length;
+            EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
+            buttonThreshold = controller.ZQuart;
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             currentButtonIndex = (currentButtonIndex + 1) % buttons.Length;
             EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
             buttonThreshold = controller.ZQuart;
         }
 
-        if (inputValue <= buttonThreshold - 20)
+        /*if (inputValue <= buttonThreshold - 20)
+        {
+            if (currentButtonIndex == 0)
+                currentButtonIndex = buttons.Length;
+            currentButtonIndex = (currentButtonIndex - 1) % buttons.Length;
+            EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
+            buttonThreshold = controller.ZQuart;
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (currentButtonIndex == 0)
                 currentButtonIndex = buttons.Length;
@@ -43,9 +59,9 @@ public class ButtonNavigator : MonoBehaviour
             buttonThreshold = controller.ZQuart;
         }
 
-        if (controller.Counter == 333)
+        /*if (controller.Counter == 333)
         {
             buttons[currentButtonIndex].onClick.Invoke();
-        }
+        }*/
     }
 }

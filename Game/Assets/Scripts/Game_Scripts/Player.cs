@@ -41,7 +41,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         Axis();
-        if(controller.Counter == 666)
+        if(controller.Counter == 110)
+        {
+            engineOn = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
             engineOn = true;
         }

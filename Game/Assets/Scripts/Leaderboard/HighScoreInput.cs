@@ -61,32 +61,52 @@ public class HighScoreInput : MonoBehaviour
         // Calling the corresponding method to change which of the three letters is selected, and
         // which letter of the alphabet is set
         // Inputs are temporary, later to be changed to use the custom controller imputs
-        if (controller.ZQuart > zbuttonThreshold+10)
+        /*if (controller.ZQuart > zbuttonThreshold+10 )
         {
             PrevLetter();
             zbuttonThreshold = controller.ZQuart;
+        }*/
+        // Key input
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            PrevLetter();
         }
-
+        /*
         if (controller.ZQuart < zbuttonThreshold -10)
         {
             NextLetter();
             zbuttonThreshold = controller.ZQuart;
+        }*/
+        // Key input
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            NextLetter();
         }
-
+        /*
         if (controller.XQuart > xbuttonThreshold+10)
         {
             NextAlphabet();
             xbuttonThreshold = controller.XQuart;
+        }*/
+        // Key input
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            NextAlphabet();
         }
-
+        /*
         if (controller.XQuart < xbuttonThreshold-10)
         {
             PrevAlphabet();
             xbuttonThreshold = controller.XQuart;
             
+        }*/
+        // Key input
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            PrevAlphabet();
         }
 
-        // Saving the set name when Return key (Enter) is pressed (input also temporary)
+        // Saving the set name when string is pulled
         if (controller.Counter == 999)
         {
             //Score = GameManager.instance.Score;
@@ -95,6 +115,14 @@ public class HighScoreInput : MonoBehaviour
                 listOfLetters[2].GetComponent<Text>().text, score);
             SceneManager.LoadScene(0); // Load back to the main menu scene
 
+        }
+        // Key input for submitting the high score input with Enter
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            HighScore.Instance.Save(listOfLetters[0].GetComponent<Text>().text
+                + listOfLetters[1].GetComponent<Text>().text +
+                listOfLetters[2].GetComponent<Text>().text, score);
+            SceneManager.LoadScene(0); // Load back to the main menu scene
         }
 
     }

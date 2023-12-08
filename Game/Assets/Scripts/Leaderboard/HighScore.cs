@@ -111,10 +111,7 @@ public class HighScore : MonoBehaviour
         {
             sb = new HighScoreList();
             sb.HighScoresList = new List<HighScoreElement>();
-            sb.AddToList(new HighScoreElement("ABC", 15));
-            sb.AddToList(new HighScoreElement("CCC", 10));
-            sb.AddToList(new HighScoreElement("DDD", 5));
-            sb.AddToList(new HighScoreElement("EEE", 2));
+            sb.AddToList(new HighScoreElement("AAA", 1));
             SaveScoreBoard(sb);
         }
         return sb;
